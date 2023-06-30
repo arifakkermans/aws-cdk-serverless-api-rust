@@ -12,14 +12,12 @@ async fn main() -> Result<(), Error> {
     let dynamodb_client = Client::new(&config);
     let data_access = DynamoDbDataAccess::new(dynamodb_client, table_name);
 
+    // Setup the tracing subscriber
     tracing_subscriber::fmt()
         .with_max_level(tracing::Level::INFO)
         .init();
 
     // Register the Lambda handler
-    //
-    // Use a closure to pass the `dynamodb_client` and `table_name` as arguments
-    // to the handler function.
     lambda_http::run(service_fn(|request: Request| {
         list_item(&data_access, request)
     }))
@@ -28,9 +26,7 @@ async fn main() -> Result<(), Error> {
     Ok(())
 }
 
-/// Get an Item from DynamoDB
-///
-/// This function will run for every invoke of the Lambda function.
+/// Scan items from DynamoDB
 async fn list_item<T: DataAccess>(
     data_access: &T,
     _request: Request,

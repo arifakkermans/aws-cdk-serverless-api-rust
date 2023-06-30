@@ -10,10 +10,12 @@ async fn main() -> Result<(), Error> {
     let table_name = env::var("TABLE_NAME").expect("TABLE_NAME must be set");
     let dynamodb_client = Client::new(&config);
 
+    // Setup the tracing subscriber
     tracing_subscriber::fmt()
         .with_max_level(tracing::Level::INFO)
         .init();
 
+    // Register the Lambda handler
     lambda_http::run(service_fn(|request: Request| {
 
         let res = put_item(&dynamodb_client, &table_name, request);
@@ -48,6 +50,7 @@ async fn put_item(
         Body::Text(body) => body.clone(),
         Body::Binary(body) => String::from_utf8_lossy(body).to_string(),
     };
+
     // Put the item in the DynamoDB table
     let res = client
         .put_item()
