@@ -7,6 +7,12 @@ This is repository includes an example of how to use Rust on AWS Lambda with an 
 - [x] Local development with `cdk watch` and `cargo-lambda`.
 - [x] The API supports List, Get, Create, and Delete operations.
 
+#### TODO
+
+- [ ] Use DDB conditions to check if an item exists before storing or deleting an item.
+- [ ] Verify if the incoming ISBN in the request is valid.
+- [ ] Store the request in seperate fields in DBB.
+
 ## Local Development
 
 To run the example locally, you need to install the `cargo-lambda` tool. You can install it with:
@@ -18,7 +24,7 @@ The best part about `cdk watch` and the `cargo-lambda` tool is that it will auto
 
 ## Deployment
 
-To deploy the example to AWS Lambda, you need to install the AWS CDK. You can install it with:
+To deploy the example to AWS, you need to install the AWS CDK. You can install it with:
 - `npm install -g aws-cdk`.
 
 After that, you can deploy the example with `cdk deploy`. This will deploy the Lambdas and create an API Gateway endpoint for you. The url for the API Gateway endpoint is on the output of the `cdk deploy` command.
