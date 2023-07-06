@@ -32,6 +32,7 @@ impl DataAccess for DynamoDbDataAccess {
         let res = &self
             .client
             .put_item()
+            .condition_expression("attribute_not_exists(isbn)")
             .table_name(&self.table_name)
             .item("isbn", AttributeValue::S(isbn.to_string()))
             .item("payload", AttributeValue::S(payload))
@@ -109,6 +110,7 @@ impl DataAccess for DynamoDbDataAccess {
         let res = &self
             .client
             .delete_item()
+            .condition_expression("attribute_exists(isbn)")
             .table_name(&self.table_name)
             .key("isbn", AttributeValue::S(isbn.to_string()))
             .send()

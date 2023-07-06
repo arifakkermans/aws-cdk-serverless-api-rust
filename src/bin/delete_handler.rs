@@ -47,7 +47,7 @@ async fn delete_item<T: DataAccess>(
     // Return a response to the end-user
     match res {
         Ok(_) => Ok(Response::builder()
-            .status(200)
+            .status(204)
             .body("item deleted".into())?),
         Err(_) => Ok(Response::builder()
             .status(500)

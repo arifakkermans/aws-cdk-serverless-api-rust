@@ -1,6 +1,6 @@
 # Simple Serverless API in Rust
 
-This is repository includes an example of how to use Rust on AWS Lambda with an API Gateway using Rest. The example uses the [AWS CDK](https://aws.amazon.com/cdk/) to deploy the infrastructure and the [cargo-lambda](https://www.cargo-lambda.info/) tool to compile the Rust code to a binary that can be deployed to AWS Lambda.
+This repository includes an example of how to use Rust on AWS Lambda with an API Gateway using Rest. The example uses the [AWS CDK](https://aws.amazon.com/cdk/) to deploy the infrastructure and the [cargo-lambda](https://www.cargo-lambda.info/) tool to compile the Rust code to a binary that can be deployed to AWS Lambda.
 
 #### Supported Features
 
